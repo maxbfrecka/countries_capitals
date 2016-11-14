@@ -1,18 +1,32 @@
 angular.module('appLibrary', [])
+  .factory('dataFactory', ['$http', '$q', function($http, $q){ 
 
-  .constant('API_PREFIX', 'api.geonames.org/countryInfo?')
-  .constant('API_USERNAME', 'maxbfrecka')
+    var dataFactory = {};
+
+    dataFactory.getCountries = function () {
+        return $http.get('http://api.geonames.org/countryInfoJSON?username=maxbfrecka');
+    };
+
+    return dataFactory;
+
+}]);
+
+
+
+
  // .constant('OWM_CITIES_JSON_FILE', './owm-cities.json')
 
-  .factory('countriesRequest', ['$http', '$q', 'API_PREFIX', 'API_USERNAME', function($http, $q, API_PREFIX, API_USERNAME){
+
+/*
+  .factory('countriesRequest', ['$http', '$q', 'API_USERNAME', function($http, $q, API_PREFIX, API_USERNAME){
     return function(params){
       var reqParams = angular.extend({}, params, {username:API_USERNAME});
-      return $http.get(API_PREFIX, {params: reqParams})
+      return $http.get('api.geonames.org/countryInfo?', {params: reqParams})
         .then(function(response){
           return $q.when(response.data);
         });
     };
-
+*/
 
 /*
     var request = {
@@ -35,9 +49,6 @@ angular.module('appLibrary', [])
     var test = 'testing';
 
     return test;
-*/
-
-
-
 
   }]); 
+*/

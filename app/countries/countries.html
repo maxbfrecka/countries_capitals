@@ -1,5 +1,8 @@
 <h2>Click country for more information</h2>
 
+
+
+
 <table>
     <tr>
     	<th>Name</th>
@@ -10,13 +13,13 @@
     	<th>Continent Code</th>
     </tr>
     
-    <tr ng-repeat="country in countries | orderBy: 'country.name'" ng-href="#!/countries/{{ country }}">
-       	<td>{{ country.name }}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
-        <td>{{}}</td>
+    <tr ng-repeat="country in vm.countries" ng-click="vm.showCountry(country)">
+       	<td>{{country.countryName}}</td>
+        <td>{{country.countryCode}}</td>
+        <td>{{country.capital}}</td>
+        <td>{{country.areaInSqKm}}</td>
+        <td>{{country.population}}</td>
+        <td>{{country.continent}}</td>
     </tr>                      
 </table>	
 
