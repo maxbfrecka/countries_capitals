@@ -1,20 +1,18 @@
-<h2>these are the countries do</h2>
-<p>the countries are</p>
+<h2>Click country for more information</h2>
 
 <table>
     <tr>
-    <th>Country Name</th>
-    <th>1960</th> 
-    <th>1970</th>
-    <th>1980</th>
-    <th>1990</th>
-    <th>2000</th>
-    <th>2010</th>
-    <th>% Growth 1960-2010</th>
+    	<th>Name</th>
+    	<th>Country Code</th> 
+    	<th>Capital</th>
+    	<th>Area in km2</th>
+    	<th>Population</th>
+    	<th>Continent Code</th>
     </tr>
     
-    <tr ng-repeat="country in countries | orderBy: 'name'" >
+    <tr ng-repeat="country in countries | orderBy: 'country.name'" ng-href="#!/countries/{{ country }}">
        	<td>{{ country.name }}</td>
+        <td>{{}}</td>
         <td>{{}}</td>
         <td>{{}}</td>
         <td>{{}}</td>

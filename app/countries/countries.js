@@ -1,10 +1,11 @@
 viewsModule.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when("/countries", {
     templateUrl : "./countries/countries.html",
-    controller : 'CountriesCtrl'
-  });
+    controller : 'CountriesCtrl',
+    });
 }]);
 
-viewsModule.controller('CountriesCtrl', function() {
+viewsModule.controller('CountriesCtrl', ['$scope', 'countriesRequest', function($scope, countriesRequest) {
+	$scope.countries = countriesRequest;
 
-});
+}]);

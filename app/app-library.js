@@ -1,46 +1,43 @@
 angular.module('appLibrary', [])
 
-  .constant('OWM_API_PREFIX', 'http://api.openweathermap.org/data/2.5/forecast')
-  .constant('OWM_API_KEY', '3e502ea7cd46248a0c1f1515a3952deb')
-  .constant('OWM_CITIES_JSON_FILE', './owm-cities.json')
-  .factory('owmRequest', ['$http', '$q', 'OWM_API_PREFIX', 'OWM_API_KEY', function($http, $q, OWM_API_PREFIX, OWM_API_KEY){
+  .constant('API_PREFIX', 'api.geonames.org/countryInfo?')
+  .constant('API_USERNAME', 'maxbfrecka')
+ // .constant('OWM_CITIES_JSON_FILE', './owm-cities.json')
+
+  .factory('countriesRequest', ['$http', '$q', 'API_PREFIX', 'API_USERNAME', function($http, $q, API_PREFIX, API_USERNAME){
     return function(params){
-      var reqParams = angular.extend({}, params, {APPID: OWM_API_KEY});
-      return $http.get(OWM_API_PREFIX, {params: reqParams})
+      var reqParams = angular.extend({}, params, {username:API_USERNAME});
+      return $http.get(API_PREFIX, {params: reqParams})
         .then(function(response){
           return $q.when(response.data);
         });
     };
-  }]) 
-  .factory('owmUSCities', ['$http', '$q', 'OWM_CITIES_JSON_FILE', function($http, $q, OWM_CITIES_JSON_FILE) {
-    return function() {
-      return $http.get(OWM_CITIES_JSON_FILE, {cache: true})
-        .then(function(response){
-          return $q.when(response.data);
-        });
-    };
-  }])
-  .factory('owmFindCity', ['owmRequest', function(owmRequest) {
-    return function(q) {
-      var params;
-      if(q.match(/^\d+$/)) {
-        params = {
-          id : q
-        };
-      } else {
-        params = {
-          q : q
-        };
-      }
-      return owmRequest(params);
-    };
-  }])
-  .factory('owmNearby', ['owmRequest', function(owmRequest) {
-    return function(loc) {
-      var params = {
-        lat : loc.lat,
-        lng : loc.lng
-      };
-      return owmRequest(params);
-    };
-  }]);
+
+
+/*
+    var request = {
+          username: 'maxbfrecka',
+    }
+    
+    $http({
+        url: 'api.geonames.org/countryInfo?',
+        method: 'GET',
+        params: request
+    }).then(function(response) {
+        var results = response.data.countries;
+        return results;
+    },
+      function(response) {
+        console.log('Failure :(');
+            
+    });
+
+    var test = 'testing';
+
+    return test;
+*/
+
+
+
+
+  }]); 
