@@ -1,28 +1,30 @@
-<h2><b>{{vm.country.countryName}}</b></h1>
-<p>Population of country: {{vm.country.population | number}}</p>
-<p>Area: {{vm.country.area | number}}</p>
-<p>Capital: {{vm.country.capital}}</p>
-<p>Population of Capital: {{vm.capital.population}}</p>
+<div class='details'>
 
-<h3>{{vm.neighbors.length}} Neighbors:</h3>
-<div ng-repeat="neighbor in vm.neighbors">
-<span ng-click="vm.showCountry(neighbor.countryName)">{{neighbor.countryName}}</span>
+	<h2>{{vm.country.countryName}}</h2>
+		
+		<p>Population of country: {{vm.country.population | number}}</p>
+		<p>Area (km<span id='sup'>2</span>): {{vm.country.areaInSqKm | number}}</p>
+		<p>Capital: {{vm.country.capital}}</p>
+		<p>Population of Capital: {{vm.capital.population | number}}</p>
+
+	<h3>{{vm.neighbors.length}} Neighbors:</h3>
+		<div ng-repeat="neighbor in vm.neighbors">
+			<a ng-href="?#!/countries/{{neighbor.countryCode}}">{{neighbor.countryName}}</a>
+		</div>
+
+	<br>
+	<br>
+	<p><img class="flag" ng-src="http://www.geonames.org/flags/x/{{vm.country.countryCode|lowercase}}.gif" /></p>
+	<p><img class="map" ng-src="http://www.geonames.org/img/country/250/{{vm.country.countryCode|uppercase}}.png"/></p>
+
+
+<div class='forms'>
+<form id="go" action="#!/">
+	<button class="go">Home</button>
+</form>
+<form id="go" action="#!/countries">
+	<button class="go">Back to Countries</button>
+</form>
+<div>
+
 </div>
-
-
-
-
-<br>
-<br>
-<p><img class="flag" ng-src="http://www.geonames.org/flags/x/{{vm.country.countryCode|lowercase}}.gif" /></p>
-<p><img class="map" ng-src="http://www.geonames.org/img/country/250/{{vm.country.countryCode|uppercase}}.png"/></p>
-
-
-
-
-<form action="#!/">
-<button class="go">Home</button>
-</form>
-<form action="#!/countries">
-<button class="go">Back to Countries</button>
-</form>

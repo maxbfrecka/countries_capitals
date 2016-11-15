@@ -1,4 +1,33 @@
 .flag {
 	height: 180px;
 	width: 300px;
+	padding:10px;
+}
+
+.map {
+	padding:20px;
+}
+
+.details {
+	width: 80%;
+	padding: 10px;
+	margin:20px;
+}
+
+body {
+	background-color: grey;
+}
+
+#sup {
+	font-size:xx-small; 
+	vertical-align:super;
+}
+
+.forms {
+	border-style: solid;
+}
+
+#go {
+	float:left;
+	padding:5px;
 }

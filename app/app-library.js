@@ -26,6 +26,15 @@ angular.module('appLibrary', [])
       return dataFactory.currentCountry;
     }
 
+    dataFactory.getCountryDetails = function (countryCode){
+      var request = {
+        username: 'maxbfrecka',
+        country: countryCode
+      }
+      return $http.get('http://api.geonames.org/countryInfoJSON?', {cache:true, method: 'JSONP', params:request});
+    }
+
+
     dataFactory.getCountry = function (country){
       $location.path('/countries/' + country.countryCode);
       dataFactory.currentCountry.population = country.population;
