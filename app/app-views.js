@@ -1,2 +1,2 @@
 var viewsModule = angular.module('AppViews',
-    ['ngRoute', 'appLibrary']);
+    ['ngRoute', 'appLibrary', 'Data']);

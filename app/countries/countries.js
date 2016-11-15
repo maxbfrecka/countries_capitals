@@ -6,14 +6,15 @@ viewsModule.config(['$routeProvider', function($routeProvider) {
     });
 }]);
 
-viewsModule.controller('CountriesCtrl', ['$scope', '$http', '$location', 'dataFactory', function($scope, $http, $location, dataFactory) {
+viewsModule.controller('CountriesCtrl', ['$scope', '$http', '$location', 'countryData', 'dataFactory', function($scope, $http, $location, countryData, dataFactory) {
 	var vm = this;
 	
+/*	
 	this.showCountry = function(country) {
   		$location.path('/countries/' + country.countryCode);
 	};
+*/
 
-	vm.countries;
 
     getCountries();
 
@@ -27,7 +28,14 @@ viewsModule.controller('CountriesCtrl', ['$scope', '$http', '$location', 'dataFa
             });
     }
 
+    this.showCountry= function(country){
+    	dataFactory.getCountry(country);
+
+    }
+
     console.log(vm.countries);
+
+
 
 
 /*	

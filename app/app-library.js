@@ -1,15 +1,64 @@
 angular.module('appLibrary', [])
-  .factory('dataFactory', ['$http', '$q', function($http, $q){ 
+  .factory('dataFactory', ['$http', '$q', '$location', function($http, $q, $location){ 
 
     var dataFactory = {};
 
+
     dataFactory.getCountries = function () {
-        return $http.get('http://api.geonames.org/countryInfoJSON?username=maxbfrecka');
+        return $http.get('http://api.geonames.org/countryInfoJSON?username=maxbfrecka', {cache:true});
+      }
+
+    dataFactory.currentCountry = {};
+
+    dataFactory.getCapital = function(countryCode){
+      var request = {
+        username: 'maxbfrecka',
+        q: 'capital',
+        formatted: true,
+        country: countryCode,
+        maxRows: 1
+      }
+      return $http.get('http://api.geonames.org/searchJSON?', {cache:true, params: request})
+    }
+
+    dataFactory.getInfo = function(){
+      console.log('current getInfo is:' + dataFactory.currentCountry);
+      return dataFactory.currentCountry;
+    }
+
+    dataFactory.getCountry = function (country){
+      $location.path('/countries/' + country.countryCode);
+      dataFactory.currentCountry.population = country.population;
+      dataFactory.currentCountry.area = country.areaInSqKm;
+      dataFactory.currentCountry.countryName = country.countryName;
+      dataFactory.currentCountry.countryCode = country.countryCode;
+      dataFactory.currentCountry.capital = country.capital;
+      dataFactory.currentCountry.capitalPopulation = 'population of capital?'
+      dataFactory.currentCountry.neighbors = 'here are neighbors';
+      console.log(dataFactory.currentCountry);
+      return dataFactory.currentCountry;
+    };
+
+    dataFactory.getNeighbors = function(countryCode){
+      var request = {
+        username: 'maxbfrecka',
+        country: countryCode
+      }
+      return $http.get('http://api.geonames.org/neighboursJSON?', {cache:true, params: request})
+    }
+
+    dataFactory.getInfo = function(country){
     };
 
     return dataFactory;
 
 }]);
+
+
+
+//old way - was working
+//dataFactory.getCountries = function () {
+//        return $http.get('http://api.geonames.org/countryInfoJSON?username=maxbfrecka');
 
 
 

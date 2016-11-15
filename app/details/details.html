@@ -1,1 +1,28 @@
-<p>dat countrycode</p>
+<h2><b>{{vm.country.countryName}}</b></h1>
+<p>Population of country: {{vm.country.population | number}}</p>
+<p>Area: {{vm.country.area | number}}</p>
+<p>Capital: {{vm.country.capital}}</p>
+<p>Population of Capital: {{vm.capital.population}}</p>
+
+<h3>{{vm.neighbors.length}} Neighbors:</h3>
+<div ng-repeat="neighbor in vm.neighbors">
+<span ng-click="vm.showCountry(neighbor.countryName)">{{neighbor.countryName}}</span>
+</div>
+
+
+
+
+<br>
+<br>
+<p><img class="flag" ng-src="http://www.geonames.org/flags/x/{{vm.country.countryCode|lowercase}}.gif" /></p>
+<p><img class="map" ng-src="http://www.geonames.org/img/country/250/{{vm.country.countryCode|uppercase}}.png"/></p>
+
+
+
+
+<form action="#!/">
+<button class="go">Home</button>
+</form>
+<form action="#!/countries">
+<button class="go">Back to Countries</button>
+</form>
