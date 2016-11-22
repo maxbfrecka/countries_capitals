@@ -1,4 +1,4 @@
-angular.module('myApp', ['AppViews', 'ngRoute', 'ngAnimate', 'Data'])
+angular.module('myApp', ['AppViews', 'ngRoute', 'ngAnimate'])
   .config(function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.otherwise({
